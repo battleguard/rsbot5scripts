@@ -11,6 +11,6 @@ public abstract class Node extends MethodProvider {
 	
 	public abstract void execute();
 	
-	public abstract boolean validate();
+	public abstract boolean activate();
 
 }

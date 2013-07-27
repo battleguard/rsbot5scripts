@@ -1,35 +1,39 @@
 package com.battleguard.scripts.basickiller;
 
 
+import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Iterator;
 
 import org.powerbot.event.PaintListener;
 import org.powerbot.script.Manifest;
 import org.powerbot.script.PollingScript;
-import org.powerbot.script.wrappers.Npc;
+import org.powerbot.script.wrappers.GroundItem;
+
+import com.battleguard.scripts.basickiller.Nodes.Fighter;
+import com.battleguard.scripts.basickiller.Nodes.Looter;
+import com.battleguard.scripts.basickiller.Nodes.Node;
 
 @Manifest(authors = { "Battleguard" }, description = "Warped Cockroach Killer", name = "Warped Cockroach Killer")
 public class CockroachKiller extends PollingScript implements PaintListener {
-
-	private static int WARPED_COCK_ROACH_ID = 7913;		
+	
+	private final Node[] nodes = {new Looter(ctx), new Fighter(ctx)};
 	
 	@Override
-	public int poll() {		
-		if(!ctx.players.local().isInCombat()) {
-			Iterator<Npc> iterator = ctx.npcs.select().id(WARPED_COCK_ROACH_ID).nearest().iterator();
-			if(iterator.hasNext()) {
-				final Npc roach = iterator.next();
-				if(roach.interact("Attack", roach.getName())) {
-					sleep(1000);
-				}				
+	public int poll() {			
+		for (Node node : nodes) {
+			if(node.activate()) {
+				node.execute();
+				return 50;
 			}
-		}
+		}		
 		return 50;
-	}
-
+	}	
+	
 	@Override
-	public void repaint(Graphics g) {
+	public void repaint(Graphics g) {				
+//		for (GroundItem loot : ctx.groundItems) {			
+//			g.drawPolygon(loot.getLocation().getMatrix(ctx).getBounds());
+//		}
 	}
 
 }
