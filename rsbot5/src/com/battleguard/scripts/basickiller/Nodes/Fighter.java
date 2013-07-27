@@ -1,14 +1,21 @@
 package com.battleguard.scripts.basickiller.Nodes;
 
+import org.powerbot.script.lang.Filter;
 import org.powerbot.script.methods.MethodContext;
 import org.powerbot.script.wrappers.Npc;
+import org.powerbot.script.wrappers.Player;
+
+import com.battleguard.scripts.basickiller.Filters.InCombat;
 
 public class Fighter extends Node {
 
 	private static int WARPED_COCK_ROACH_ID = 7913;
 	
-	public Fighter(MethodContext arg0) {
-		super(arg0);
+	private final Filter<Npc> inCombatFilter = new InCombat(ctx);	
+	
+	public Fighter(MethodContext ctx) {
+		super(ctx);
+		
 	}
 
 	@Override
@@ -21,7 +28,8 @@ public class Fighter extends Node {
 
 	@Override
 	public boolean activate() {
-		return !ctx.players.local().isInCombat() && ctx.npcs.select().id(WARPED_COCK_ROACH_ID).nearest().iterator().hasNext();
+		final Player local = ctx.players.local();		
+		return local.getInteracting() == null && !local.isInMotion() && ctx.npcs.select().id(WARPED_COCK_ROACH_ID).nearest().iterator().hasNext();
 	}
 
 }
