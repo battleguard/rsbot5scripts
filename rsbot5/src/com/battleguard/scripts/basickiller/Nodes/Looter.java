@@ -19,11 +19,10 @@ public class Looter extends Node {
 	}
 	
 	private final Filter<GroundItem> lootFilter = new LootFilter(ctx);
-	private final Filter<Npc> inCombatFilter = new InCombat(ctx);	
-
-
+	private final Filter<Npc> inCombatFilter = new InCombat(ctx);		
+	
 	@Override
-	public void execute() {			
+	public void execute() {					
 		final GroundItem loot = ctx.groundItems.iterator().next();
 		if(loot.interact("Take", loot.getName())) {
 			final Timer t = new Timer(2000);
@@ -32,12 +31,13 @@ public class Looter extends Node {
 			}		
 		} else if(ctx.mouse.move(loot)) {
 			sleep(1000);
-		}		
+		}
+		
 	}
 
 	@Override
-	public boolean activate() {
-		return ctx.npcs.select().select(inCombatFilter).isEmpty() && ctx.groundItems.select().select(lootFilter).iterator().hasNext();
+	public boolean activate() {		
+		return ctx.npcs.select().select(inCombatFilter).isEmpty() && !ctx.groundItems.select().select(lootFilter).isEmpty();
 	}
 
 }
