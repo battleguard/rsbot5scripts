@@ -6,38 +6,39 @@ import org.powerbot.script.util.Timer;
 import org.powerbot.script.wrappers.GameObject;
 
 import com.battleguard.scripts.f2prunecrafter.data.Master;
-import com.battleguard.scripts.f2prunecrafter.wrappers.Area;
 
 public class Doors extends MethodProvider implements Node {
 
 	private final int doorId;
-	private final Area doorArea;
+	private final int distance;
 	
-	private Doors(MethodContext ctx, final int doorId, final Area doorArea) {
+	private Doors(MethodContext ctx, final int doorId, final int distance) {
 		super(ctx);
 		this.doorId = doorId;
-		this.doorArea = doorArea;
+		this.distance = distance;
 	}
 	
 	public static Doors enterAlterInstance(Master master, MethodContext ctx) {
-		return new Doors(ctx, master.alter().outsideDoorId(), master.area().outsideAlter());
+		return new Doors(ctx, master.alter().outsideDoorId(), 5);
 	}
 	
 	public static Doors exitAlterInstance(Master master, MethodContext ctx) {
-		return new Doors(ctx, master.alter().insideDoorId(), master.area().insiderAlter());
+		return new Doors(ctx, master.alter().insideDoorId(), Integer.MAX_VALUE);
 	}
 	
 	@Override
-	public boolean activate() {
-		return doorArea.contains(ctx.players.local()) && !ctx.objects.select().id(doorId).nearest().first().isEmpty();
+	public boolean activate() {		
+		return !ctx.objects.select().id(doorId).within(distance).isEmpty();
 	}
+	
+
 
 	@Override
 	public void execute() {				
 		GameObject door = ctx.objects.iterator().next();
 		final Timer t = new Timer(3000);
 		if(door.isOnScreen() && door.click(true)) {
-			while(t.isRunning() && doorArea.contains(ctx.players.local())) {
+			while(t.isRunning() && door.isOnScreen()) {
 				sleep(50);
 			}
 		} else if(ctx.movement.stepTowards(door)) {

@@ -35,7 +35,7 @@ public class Runecrafter extends PollingScript implements PaintListener {
 			 
             @Override
             public void run() {
-            	master = Master.MIND;	
+            	master = Master.FIRE;	
             	master.path().init(ctx);
         		
         		Node toAlter = Walk.alterPathInstance(master, ctx);        		
@@ -49,12 +49,11 @@ public class Runecrafter extends PollingScript implements PaintListener {
         		craftNodes.addAll(Arrays.asList(crafting, enterAlter, toAlter));
         		bankNodes.addAll(Arrays.asList(bank, exitAlter, toBank));
             }
-        });
+        });		
 	}
 	
-	
 	@Override
-	public int poll() {
+	public int poll() {		
 		final Queue<Node> tree = ctx.backpack.select().id(master.rune().essenceId()).isEmpty() ? bankNodes : craftNodes;
 		for (Node node : tree) {
 			if(node.activate()) {
@@ -72,21 +71,21 @@ public class Runecrafter extends PollingScript implements PaintListener {
 		g.drawString("Current Node: " + currentNodeName, 10, 10);		
 		
 		final int[] ids = {master.alter().alterId(), master.alter().insideDoorId(), master.alter().outsideDoorId()};
-		final Area[] areas = {master.area().bank(), master.area().insiderAlter(), master.area().outsideAlter()};
+//		final Area[] areas = {master.area().bank(), master.area().insiderAlter(), master.area().outsideAlter()};
 		final Tile[] path = master.path().toBank().toArray();
 				
 		for (GameObject sceneObject : ctx.objects.select().id(ids)) {			
 			sceneObject.draw(g);
 		}
-		for (Area area : areas) {
-			for (Tile tile : area.getTileArray()) {
-				final TileMatrix matrix = tile.getMatrix(ctx);
-				if(matrix.isOnScreen()) {		
-					g.setColor(Color.GREEN.brighter());
-					g.drawPolygon(matrix.getBounds());
-				}							
-			}
-		}
+//		for (Area area : areas) {
+//			for (Tile tile : area.getTileArray()) {
+//				final TileMatrix matrix = tile.getMatrix(ctx);
+//				if(matrix.isOnScreen()) {		
+//					g.setColor(Color.GREEN.brighter());
+//					g.drawPolygon(matrix.getBounds());
+//				}							
+//			}
+//		}
 		
 		for (Tile tile : path) {
 			final TileMatrix matrix = tile.getMatrix(ctx);

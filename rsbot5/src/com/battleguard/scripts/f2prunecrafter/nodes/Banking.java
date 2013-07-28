@@ -11,17 +11,15 @@ import com.battleguard.scripts.f2prunecrafter.wrappers.Area;
 public class Banking extends MethodProvider implements Node {
 
 	private final int essenceId;
-	private final Area bankArea;
 	
 	public Banking(Master master, MethodContext ctx) {
 		super(ctx);
 		this.essenceId = master.rune().essenceId();
-		this.bankArea = master.area().bank();
 	}
 	
 	@Override
 	public boolean activate() {
-		return bankArea.contains(ctx.players.local());
+		return ctx.bank.isOnScreen();		
 	}
 
 	@Override

@@ -23,7 +23,9 @@ public enum Paths {
 			new Tile(2979, 3510, 0), new Tile(2980, 3514, 0)),
 	WATER(new Tile(0,0,0)),
 	EARTH(new Tile(0,0,0)),
-	FIRE(new Tile(0,0,0)),
+	FIRE(new Tile(3349, 3238, 0), new Tile(3343, 3236, 0), new Tile(3337, 3235, 0), 
+			new Tile(3331, 3233, 0), new Tile(3325, 3233, 0), new Tile(3320, 3238, 0), 
+			new Tile(3315, 3242, 0), new Tile(3313, 3248, 0), new Tile(3311, 3254, 0)),
 	BODY(new Tile(0,0,0));		
 		
 	

@@ -105,6 +105,10 @@ public class PathMaker extends PollingScript implements PaintListener {
 		}
 	};
 	
+	private String getText() {
+		
+	}
+	
 	private final ListDataListener dataListener = new ListDataListener() {		
 		
 		private void setText() {			

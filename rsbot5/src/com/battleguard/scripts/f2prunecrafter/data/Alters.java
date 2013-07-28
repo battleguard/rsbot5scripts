@@ -5,7 +5,7 @@ public enum Alters {
 	MIND(2479,2466,2453),
 	WATER(0,0,0),
 	EARTH(0,0,0),
-	FIRE(0,0,0),
+	FIRE(2482,2469,2456),
 	BODY(0,0,0);	
 	
 	private final int alterId;

@@ -5,7 +5,7 @@ public enum Runes {
 	MIND(558,1436,0),
 	WATER(0,1436,0),
 	EARTH(0,1436,0),
-	FIRE(0,1436,0),
+	FIRE(554,1436,0),
 	BODY(0,1436,0);	
 	
 	private final int runeId;
