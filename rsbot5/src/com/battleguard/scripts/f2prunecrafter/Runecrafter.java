@@ -40,7 +40,7 @@ public class Runecrafter extends PollingScript implements PaintListener {
         		
         		Node toAlter = Walk.alterPathInstance(master, ctx);        		
         		Node enterAlter = Doors.enterAlterInstance(master, ctx);
-        		Node crafting = new Craft(master, ctx);
+        		Node crafting = new Craft(master, ctx);        		
         		
         		Node bank = new Banking(master, ctx);
         		Node toBank = Walk.bankPathInstance(master, ctx);
@@ -71,30 +71,30 @@ public class Runecrafter extends PollingScript implements PaintListener {
 	public void repaint(Graphics g) {		
 		g.drawString("Current Node: " + currentNodeName, 10, 10);		
 		
-		final int[] ids = {master.alter().alterId(), master.alter().insideDoorId(), master.alter().outsideDoorId()};
-		final Area[] areas = {master.area().bank(), master.area().insiderAlter(), master.area().outsideAlter()};
-		final Tile[] path = master.path().toBank().toArray();
-				
-		for (GameObject sceneObject : ctx.objects.select().id(ids)) {			
-			sceneObject.draw(g);
-		}
-		for (Area area : areas) {
-			for (Tile tile : area.getTileArray()) {
-				final TileMatrix matrix = tile.getMatrix(ctx);
-				if(matrix.isOnScreen()) {		
-					g.setColor(Color.GREEN.brighter());
-					g.drawPolygon(matrix.getBounds());
-				}							
-			}
-		}
-		
-		for (Tile tile : path) {
-			final TileMatrix matrix = tile.getMatrix(ctx);
-			if(matrix.isOnScreen()) {
-				g.setColor(Color.RED);
-				g.drawPolygon(matrix.getBounds());
-			}	
-		}
+//		final int[] ids = {master.alter().alterId(), master.alter().insideDoorId(), master.alter().outsideDoorId()};
+//		final Area[] areas = {master.area().bank(), master.area().insiderAlter(), master.area().outsideAlter()};
+//		final Tile[] path = master.path().toBank().toArray();
+//				
+//		for (GameObject sceneObject : ctx.objects.select().id(ids)) {			
+//			sceneObject.draw(g);
+//		}
+//		for (Area area : areas) {
+//			for (Tile tile : area.getTileArray()) {
+//				final TileMatrix matrix = tile.getMatrix(ctx);
+//				if(matrix.isOnScreen()) {		
+//					g.setColor(Color.GREEN.brighter());
+//					g.drawPolygon(matrix.getBounds());
+//				}							
+//			}
+//		}
+//		
+//		for (Tile tile : path) {
+//			final TileMatrix matrix = tile.getMatrix(ctx);
+//			if(matrix.isOnScreen()) {
+//				g.setColor(Color.RED);
+//				g.drawPolygon(matrix.getBounds());
+//			}	
+//		}
 	}
 
 }

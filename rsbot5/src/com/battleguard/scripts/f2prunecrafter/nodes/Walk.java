@@ -4,6 +4,7 @@ import org.powerbot.script.methods.MethodContext;
 import org.powerbot.script.methods.MethodProvider;
 import org.powerbot.script.util.Timer;
 import org.powerbot.script.wrappers.TilePath;
+import org.powerbot.script.wrappers.Path.TraversalOption;
 
 import com.battleguard.scripts.f2prunecrafter.data.Master;
 
@@ -31,7 +32,7 @@ public class Walk extends MethodProvider implements Node {
 	}
 
 	@Override
-	public void execute() {
+	public void execute() {		
 		path.traverse();
 		nextStep.reset();
 	}
