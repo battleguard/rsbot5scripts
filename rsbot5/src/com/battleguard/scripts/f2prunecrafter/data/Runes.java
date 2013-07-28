@@ -2,7 +2,7 @@ package com.battleguard.scripts.f2prunecrafter.data;
 
 public enum Runes {
 	AIR(556,1436,5527),
-	MIND(0,1436,0),
+	MIND(558,1436,0),
 	WATER(0,1436,0),
 	EARTH(0,1436,0),
 	FIRE(0,1436,0),

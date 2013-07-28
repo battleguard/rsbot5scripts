@@ -2,7 +2,7 @@ package com.battleguard.scripts.f2prunecrafter.data;
 
 public enum Alters {
 	AIR(2478,2465,2452),
-	MIND(0,0,0),
+	MIND(2479,2466,2453),
 	WATER(0,0,0),
 	EARTH(0,0,0),
 	FIRE(0,0,0),
