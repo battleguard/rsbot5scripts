@@ -26,28 +26,19 @@ public enum Paths {
 	FIRE(new Tile(3349, 3238, 0), new Tile(3343, 3236, 0), new Tile(3337, 3235, 0), 
 			new Tile(3331, 3233, 0), new Tile(3325, 3233, 0), new Tile(3320, 3238, 0), 
 			new Tile(3315, 3242, 0), new Tile(3313, 3248, 0), new Tile(3311, 3254, 0)),
-	BODY(new Tile(0,0,0));		
-		
-	
-	private TilePath toBank;
-	private TilePath toAlter;	
+	BODY(new Tile(0,0,0));			
 	
 	private final Tile[] tiles;
 	
 	Paths(Tile... tiles) {			
 		this.tiles = tiles;
 	}
-
-	public void init(MethodContext ctx) {
-		toAlter = new TilePath(ctx, tiles);
-		toBank = new TilePath(ctx, tiles).reverse();
-	}
 	
-	public TilePath toBank() {
-		return toBank;
+	public TilePath toBank(MethodContext ctx) {
+		return new TilePath(ctx, tiles).reverse();
 	}
 	
 	public TilePath toAlter() {
-		return toAlter;
+		return new TilePath(ctx, tiles);
 	}	
 }
