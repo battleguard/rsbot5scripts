@@ -23,8 +23,6 @@ import com.battleguard.scripts.f2prunecrafter.nodes.impl.Walk;
 @Manifest(authors = { "Battleguard" }, description = "AIO free to play runecrafter", name = "AIO F2P Runecrafter")
 public class Runecrafter extends PollingScript implements PaintListener {	
 	
-	// is this going to master?
-	
     private final Queue<Node> bankNodes = new ConcurrentLinkedQueue<>();
     private final Queue<Node> craftNodes = new ConcurrentLinkedQueue<>();
 	
@@ -72,21 +70,11 @@ public class Runecrafter extends PollingScript implements PaintListener {
 		g.drawString("Current Node: " + currentNodeName, 10, 10);		
 		
 		final int[] ids = {master.alter().alterId(), master.alter().insideDoorId(), master.alter().outsideDoorId()};
-//		final Area[] areas = {master.area().bank(), master.area().insiderAlter(), master.area().outsideAlter()};
 		final Tile[] path = master.path().toBank(ctx).toArray();
 				
 		for (GameObject sceneObject : ctx.objects.select().id(ids)) {			
 			sceneObject.draw(g);
 		}
-//		for (Area area : areas) {
-//			for (Tile tile : area.getTileArray()) {
-//				final TileMatrix matrix = tile.getMatrix(ctx);
-//				if(matrix.isOnScreen()) {		
-//					g.setColor(Color.GREEN.brighter());
-//					g.drawPolygon(matrix.getBounds());
-//				}							
-//			}
-//		}
 		
 		for (Tile tile : path) {
 			final TileMatrix matrix = tile.getMatrix(ctx);

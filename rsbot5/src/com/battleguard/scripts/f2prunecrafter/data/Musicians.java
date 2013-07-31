@@ -1,8 +1,7 @@
 package com.battleguard.scripts.f2prunecrafter.data;
 
+import org.powerbot.script.wrappers.Area;
 import org.powerbot.script.wrappers.Tile;
-
-import com.battleguard.scripts.f2prunecrafter.wrappers.Area;
 
 public enum Musicians {
 	AIR(8699, new Area(new Tile(3150, 3416, 0), new Tile(3160, 3425, 0))),
