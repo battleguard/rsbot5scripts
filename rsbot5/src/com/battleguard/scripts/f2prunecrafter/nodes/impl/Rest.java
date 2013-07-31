@@ -27,7 +27,7 @@ public class Rest extends MethodProvider implements Node {
 	@Override
 	public void execute() {		
 		if(!ctx.npcs.select().id(musician.id()).first().isEmpty()) {
-			Npc singer = ctx.npcs.iterator().next();
+			final Npc singer = ctx.npcs.iterator().next();
 			if(singer.interact("Listen-To", singer.getName())) {
 				final Timer t = new Timer(2000);
 				while(t.isRunning() && ctx.movement.getEnergyLevel() < 100) {

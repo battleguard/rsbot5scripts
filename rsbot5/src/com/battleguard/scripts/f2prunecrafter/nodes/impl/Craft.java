@@ -26,14 +26,14 @@ public class Craft extends MethodProvider implements Node {
 
 	@Override
 	public void execute() {		
-		GameObject alter = ctx.objects.iterator().next();		
-		final Timer t = new Timer(3000);
+		final GameObject alter = ctx.objects.iterator().next();		
+		final Timer wait = new Timer(3000);
 		if(alter.isOnScreen() && alter.click(true)) {
-			while(t.isRunning() && !ctx.backpack.select().id(essenceId).isEmpty()) {
+			while(wait.isRunning() && !ctx.backpack.select().id(essenceId).isEmpty()) {
 				sleep(50);
 			}
 		} else if(ctx.movement.stepTowards(alter)) {
-			while(t.isRunning() && ctx.players.local().isInMotion()) {
+			while(wait.isRunning() && ctx.players.local().isInMotion()) {
 				sleep(50);
 			}
 		}
