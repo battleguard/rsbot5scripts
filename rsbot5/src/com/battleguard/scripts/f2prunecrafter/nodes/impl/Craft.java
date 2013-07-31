@@ -1,4 +1,4 @@
-package com.battleguard.scripts.f2prunecrafter.nodes;
+package com.battleguard.scripts.f2prunecrafter.nodes.impl;
 
 import org.powerbot.script.methods.MethodContext;
 import org.powerbot.script.methods.MethodProvider;
@@ -6,6 +6,7 @@ import org.powerbot.script.util.Timer;
 import org.powerbot.script.wrappers.GameObject;
 
 import com.battleguard.scripts.f2prunecrafter.data.Master;
+import com.battleguard.scripts.f2prunecrafter.nodes.Node;
 
 public class Craft extends MethodProvider implements Node {
 
@@ -37,5 +38,4 @@ public class Craft extends MethodProvider implements Node {
 			}
 		}
 	}
-
 }

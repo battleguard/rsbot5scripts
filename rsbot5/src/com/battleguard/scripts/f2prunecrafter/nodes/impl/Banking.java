@@ -1,12 +1,11 @@
-package com.battleguard.scripts.f2prunecrafter.nodes;
+package com.battleguard.scripts.f2prunecrafter.nodes.impl;
 
 import org.powerbot.script.methods.Bank.Amount;
 import org.powerbot.script.methods.MethodContext;
 import org.powerbot.script.methods.MethodProvider;
 
 import com.battleguard.scripts.f2prunecrafter.data.Master;
-
-import com.battleguard.scripts.f2prunecrafter.wrappers.Area;
+import com.battleguard.scripts.f2prunecrafter.nodes.Node;
 
 public class Banking extends MethodProvider implements Node {
 
@@ -16,6 +15,7 @@ public class Banking extends MethodProvider implements Node {
 		super(ctx);
 		this.essenceId = master.rune().essenceId();
 	}
+	
 	
 	@Override
 	public boolean activate() {

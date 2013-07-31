@@ -14,12 +14,11 @@ import org.powerbot.script.wrappers.Tile;
 import org.powerbot.script.wrappers.TileMatrix;
 
 import com.battleguard.scripts.f2prunecrafter.data.Master;
-import com.battleguard.scripts.f2prunecrafter.nodes.Banking;
-import com.battleguard.scripts.f2prunecrafter.nodes.Craft;
-import com.battleguard.scripts.f2prunecrafter.nodes.Doors;
 import com.battleguard.scripts.f2prunecrafter.nodes.Node;
-import com.battleguard.scripts.f2prunecrafter.nodes.Walk;
-import com.battleguard.scripts.f2prunecrafter.wrappers.Area;
+import com.battleguard.scripts.f2prunecrafter.nodes.impl.Banking;
+import com.battleguard.scripts.f2prunecrafter.nodes.impl.Craft;
+import com.battleguard.scripts.f2prunecrafter.nodes.impl.Doors;
+import com.battleguard.scripts.f2prunecrafter.nodes.impl.Walk;
 
 @Manifest(authors = { "Battleguard" }, description = "AIO free to play runecrafter", name = "AIO F2P Runecrafter")
 public class Runecrafter extends PollingScript implements PaintListener {

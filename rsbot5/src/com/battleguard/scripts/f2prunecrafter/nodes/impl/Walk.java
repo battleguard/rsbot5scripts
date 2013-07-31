@@ -1,4 +1,4 @@
-package com.battleguard.scripts.f2prunecrafter.nodes;
+package com.battleguard.scripts.f2prunecrafter.nodes.impl;
 
 import org.powerbot.script.methods.MethodContext;
 import org.powerbot.script.methods.MethodProvider;
@@ -6,11 +6,12 @@ import org.powerbot.script.util.Timer;
 import org.powerbot.script.wrappers.TilePath;
 
 import com.battleguard.scripts.f2prunecrafter.data.Master;
+import com.battleguard.scripts.f2prunecrafter.nodes.Node;
 
 public class Walk extends MethodProvider implements Node {
 
 	private final TilePath path;
-	final Timer nextStep = new Timer(1000);
+	private final Timer nextStep = new Timer(1000);
 	
 	private Walk(final TilePath path, MethodContext ctx) {
 		super(ctx);
