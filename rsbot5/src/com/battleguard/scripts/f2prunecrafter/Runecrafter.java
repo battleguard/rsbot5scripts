@@ -21,9 +21,9 @@ import com.battleguard.scripts.f2prunecrafter.nodes.impl.Doors;
 import com.battleguard.scripts.f2prunecrafter.nodes.impl.Walk;
 
 @Manifest(authors = { "Battleguard" }, description = "AIO free to play runecrafter", name = "AIO F2P Runecrafter")
-public class Runecrafter extends PollingScript implements PaintListener {
+public class Runecrafter extends PollingScript implements PaintListener {	
 	
-	// changes made to this file
+	// is this going to dev?
 	
     private final Queue<Node> bankNodes = new ConcurrentLinkedQueue<>();
     private final Queue<Node> craftNodes = new ConcurrentLinkedQueue<>();
@@ -36,6 +36,7 @@ public class Runecrafter extends PollingScript implements PaintListener {
 			 
             @Override
             public void run() {
+            	// this will be changed later to be selected by a gui
             	master = Master.FIRE;	
         		
         		Node toAlter = Walk.alterPathInstance(master, ctx);        		
@@ -59,7 +60,7 @@ public class Runecrafter extends PollingScript implements PaintListener {
 			if(node.activate()) {
 				currentNodeName = node.getClass().getName();
 				node.execute();
-				return 50;
+				break;
 			}
 		}
 		return 50;
