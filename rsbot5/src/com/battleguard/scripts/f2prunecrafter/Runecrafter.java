@@ -35,7 +35,6 @@ public class Runecrafter extends PollingScript implements PaintListener {
             @Override
             public void run() {
             	master = Master.FIRE;	
-            	master.path().init(ctx);
         		
         		Node toAlter = Walk.alterPathInstance(master, ctx);        		
         		Node enterAlter = Doors.enterAlterInstance(master, ctx);
@@ -71,7 +70,7 @@ public class Runecrafter extends PollingScript implements PaintListener {
 		
 		final int[] ids = {master.alter().alterId(), master.alter().insideDoorId(), master.alter().outsideDoorId()};
 //		final Area[] areas = {master.area().bank(), master.area().insiderAlter(), master.area().outsideAlter()};
-		final Tile[] path = master.path().toBank().toArray();
+		final Tile[] path = master.path().toBank(ctx).toArray();
 				
 		for (GameObject sceneObject : ctx.objects.select().id(ids)) {			
 			sceneObject.draw(g);

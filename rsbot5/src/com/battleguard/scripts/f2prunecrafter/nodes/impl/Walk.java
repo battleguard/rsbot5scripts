@@ -19,11 +19,11 @@ public class Walk extends MethodProvider implements Node {
 	}
 	
 	public static Walk bankPathInstance(Master master, MethodContext ctx) {
-		return new Walk(master.path().toBank(), ctx);
+		return new Walk(master.path().toBank(ctx), ctx);
 	}
 	
 	public static Walk alterPathInstance(Master master, MethodContext ctx) {
-		return new Walk(master.path().toAlter(), ctx);
+		return new Walk(master.path().toAlter(ctx), ctx);
 	}
 	
 	@Override

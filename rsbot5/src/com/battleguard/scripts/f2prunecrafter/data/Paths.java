@@ -38,7 +38,7 @@ public enum Paths {
 		return new TilePath(ctx, tiles).reverse();
 	}
 	
-	public TilePath toAlter() {
+	public TilePath toAlter(MethodContext ctx) {
 		return new TilePath(ctx, tiles);
 	}	
 }
