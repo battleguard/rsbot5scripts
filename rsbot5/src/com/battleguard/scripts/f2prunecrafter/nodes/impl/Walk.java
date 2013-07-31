@@ -13,7 +13,7 @@ public class Walk extends MethodProvider implements Node {
 	private final TilePath path;
 	private final Timer nextStep = new Timer(1000);
 	
-	private Walk(final TilePath path, MethodContext ctx) {
+	protected Walk(final TilePath path, MethodContext ctx) {
 		super(ctx);
 		this.path = path;
 	}
@@ -36,5 +36,4 @@ public class Walk extends MethodProvider implements Node {
 		path.traverse();
 		nextStep.reset();
 	}
-
 }
