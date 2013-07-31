@@ -19,11 +19,11 @@ public class Doors extends MethodProvider implements Node {
 		this.distance = distance;
 	}
 	
-	public static Doors enterAlterInstance(Master master, MethodContext ctx) {
+	public static Doors createEnterAlterInstance(Master master, MethodContext ctx) {
 		return new Doors(ctx, master.alter().outsideDoorId(), 5);
 	}
 	
-	public static Doors exitAlterInstance(Master master, MethodContext ctx) {
+	public static Doors createExitAlterInstance(Master master, MethodContext ctx) {
 		return new Doors(ctx, master.alter().insideDoorId(), Integer.MAX_VALUE);
 	}
 	
