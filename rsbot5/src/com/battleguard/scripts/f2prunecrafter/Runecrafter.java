@@ -30,13 +30,13 @@ public class Runecrafter extends PollingScript {
             	// this will be changed later to be selected by a gui
             	final Master master = Master.FIRE;	
         		
-        		Node toAlter = Walk.createAlterPathInstance(master, ctx);        		
-        		Node enterAlter = Doors.createEnterAlterInstance(master, ctx);
-        		Node crafting = new Craft(master, ctx);        		
+            	final Node crafting = new Craft(master, ctx);
+            	final Node enterAlter = Doors.createEnterAlterInstance(master, ctx);
+            	final Node toAlter = Walk.createAlterPathInstance(master, ctx);             		        		        		        		        		        	
         		
-        		Node bank = new Banking(master, ctx);
-        		Node toBank = Walk.createBankPathInstance(master, ctx);
-        		Node exitAlter = Doors.createExitAlterInstance(master, ctx);
+        		final Node bank = new Banking(master, ctx);
+        		final Node exitAlter = Doors.createExitAlterInstance(master, ctx);
+        		final Node toBank = Walk.createBankPathInstance(master, ctx);         		
         		
         		craftNodes.addAll(Arrays.asList(crafting, enterAlter, toAlter));
         		bankNodes.addAll(Arrays.asList(bank, exitAlter, toBank));
