@@ -13,7 +13,7 @@ public class Doors extends MethodProvider implements Node {
 	private final int doorId;
 	private final int distance;
 	
-	private Doors(MethodContext ctx, final int doorId, final int distance) {
+	protected Doors(MethodContext ctx, final int doorId, final int distance) {
 		super(ctx);
 		this.doorId = doorId;
 		this.distance = distance;
