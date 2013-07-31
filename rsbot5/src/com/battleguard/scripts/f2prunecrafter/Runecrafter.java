@@ -23,6 +23,8 @@ import com.battleguard.scripts.f2prunecrafter.nodes.impl.Walk;
 @Manifest(authors = { "Battleguard" }, description = "AIO free to play runecrafter", name = "AIO F2P Runecrafter")
 public class Runecrafter extends PollingScript implements PaintListener {
 	
+	// changes made to this file
+	
     private final Queue<Node> bankNodes = new ConcurrentLinkedQueue<>();
     private final Queue<Node> craftNodes = new ConcurrentLinkedQueue<>();
 	
