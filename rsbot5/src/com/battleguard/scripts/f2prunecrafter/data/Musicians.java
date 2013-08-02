@@ -28,7 +28,4 @@ public enum Musicians {
 	public Area area() {
 		return area;
 	}
-	
-	
-	
 }

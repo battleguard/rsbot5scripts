@@ -57,89 +57,17 @@ public class PathMaker extends PollingScript implements PaintListener {
 	
 	private final JCheckBox traversePathCheckBox = new JCheckBox("Traverse Path");
 	private final JCheckBox autoAddtilesCheckBox = new JCheckBox("Auto Add Tiles");
-	private JComboBox<Integer> distanceComboBox = new JComboBox<Integer>(); 
-	
+	private JComboBox<Integer> distanceComboBox = new JComboBox<Integer>(); 	
 	
 	private final DefaultListModel<Tile> tileArray = new DefaultListModel<Tile>();	
 	private final JList<Tile> tileList = new JList<Tile>(tileArray); 
     private final JScrollPane scrollPane = new JScrollPane(tileList);    
    
-    private final JFrame frame = new JFrame();
-        
-    private TilePath currentPath;
-	
+    private final JFrame frame = new JFrame();        
+    private TilePath currentPath;	
 	private final JTextArea copyPathTextArea = new JTextArea();
 	
-	private final ActionListener addTileListener = new ActionListener() {
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			tileArray.addElement(ctx.players.local().getLocation());
-			currentPath = getTilePath();
-			frame.pack();
-		}
-	};	
-	
-	private final ActionListener printButtonListener = new ActionListener() {
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {			
-			System.out.println(copyPathTextArea.getText());			
-		}
-	};	
-	
-	private final ActionListener removeButtonListener = new ActionListener() {
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			if(!tileList.isSelectionEmpty()) 
-				tileArray.removeElement(tileList.getSelectedValue());
-		}
-	};	
-	
-	private final ActionListener resetButtonListener = new ActionListener() {
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			tileArray.clear();
-		}
-	};
-	
-	private final ListDataListener dataListener = new ListDataListener() {		
-		
-		private void setText() {			
-			StringBuilder text = new StringBuilder("TilePath path = new TilePath(");
-			final Enumeration<Tile> tiles = tileArray.elements();
-			int count = 1;
-			while(tiles.hasMoreElements()) {
-				text.append("new Tile" + tiles.nextElement());
-				if(tiles.hasMoreElements()) {
-					text.append(", ");
-					if(count++ == 3) {
-						text.append("\n\t\t");
-						count = 1;
-					}					
-				}
-			}			
-			text.append(");");		
-			copyPathTextArea.setText(text.toString());
-		}
-					
-		@Override public void intervalRemoved(ListDataEvent e) {
-			setText();
-		}
-		
-		@Override public void intervalAdded(ListDataEvent e) {
-			setText();
-		}
-		
-		@Override public void contentsChanged(ListDataEvent e) {}
-	};
-	
-	
-	
-	public PathMaker() {		
-		
+	public PathMaker() {				
 		for(int i = 1; i <= 20; i++) {
 			distanceComboBox.addItem(i);
 		}
@@ -186,6 +114,62 @@ public class PathMaker extends PollingScript implements PaintListener {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
+	
+	private final ActionListener addTileListener = new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			tileArray.addElement(ctx.players.local().getLocation());
+			currentPath = getTilePath();
+			frame.pack();
+		}
+	};	
+	
+	private final ActionListener printButtonListener = new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {			
+			System.out.println(copyPathTextArea.getText());			
+		}
+	};	
+	
+	private final ActionListener removeButtonListener = new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(!tileList.isSelectionEmpty()) 
+				tileArray.removeElement(tileList.getSelectedValue());
+		}
+	};	
+	
+	private final ActionListener resetButtonListener = new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			tileArray.clear();
+		}
+	};
+	
+	private final ListDataListener dataListener = new ListDataListener() {		
+
+		@Override public void intervalRemoved(ListDataEvent e) {
+			String tilePathCode = TilePathCodeMaker.create(tileArray.elements());
+			copyPathTextArea.setText(tilePathCode);
+		}
+		
+		@Override public void intervalAdded(ListDataEvent e) {
+			String tilePathCode = TilePathCodeMaker.create(tileArray.elements());
+			copyPathTextArea.setText(tilePathCode);
+		}
+		
+		@Override public void contentsChanged(ListDataEvent e) {			
+			
+		}
+	};
+	
+	
+	
+
 	
 	public Tile[] getTiles() {
 		final Tile[] tiles = new Tile[tileArray.getSize()];
@@ -240,8 +224,6 @@ public class PathMaker extends PollingScript implements PaintListener {
 			}
 		}
 	}
-
-
 }
 
 

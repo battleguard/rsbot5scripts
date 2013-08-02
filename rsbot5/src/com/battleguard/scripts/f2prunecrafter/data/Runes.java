@@ -9,18 +9,13 @@ public enum Runes {
 	BODY(0,1436);	
 	
 	private final int runeId;
-	private final int essenceId;
+	public static final int ESSENCE_ID = 1436;
 	
 	Runes(final int runeId, final int essenceId) {
 		this.runeId = runeId;
-		this.essenceId = essenceId;	
 	}
 	
 	public int runeId() {
 		return runeId;
-	}
-	
-	public int essenceId() {
-		return essenceId;
 	}
 }

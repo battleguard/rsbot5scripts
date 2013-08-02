@@ -1,8 +1,6 @@
 package com.battleguard.scripts.f2prunecrafter.data;
 
-import org.powerbot.script.methods.MethodContext;
 import org.powerbot.script.wrappers.Tile;
-import org.powerbot.script.wrappers.TilePath;
 
 public enum Paths {
 	AIR(new Tile(3184, 3435, 0), new Tile(3185, 3432, 0), new Tile(3181, 3430, 0), 
@@ -34,11 +32,7 @@ public enum Paths {
 		this.tiles = tiles;
 	}
 	
-	public TilePath toBank(MethodContext ctx) {
-		return new TilePath(ctx, tiles).reverse();
+	public Tile[] tiles() {
+		return tiles;
 	}
-	
-	public TilePath toAlter(MethodContext ctx) {
-		return new TilePath(ctx, tiles);
-	}	
 }

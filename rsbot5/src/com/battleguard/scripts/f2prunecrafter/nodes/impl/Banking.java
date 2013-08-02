@@ -4,18 +4,14 @@ import org.powerbot.script.methods.Bank.Amount;
 import org.powerbot.script.methods.MethodContext;
 import org.powerbot.script.methods.MethodProvider;
 
-import com.battleguard.scripts.f2prunecrafter.data.Master;
+import com.battleguard.scripts.f2prunecrafter.data.Runes;
 import com.battleguard.scripts.f2prunecrafter.nodes.Node;
 
 public class Banking extends MethodProvider implements Node {
-
-	private final int essenceId;
 	
-	public Banking(Master master, MethodContext ctx) {
+	public Banking(MethodContext ctx) {
 		super(ctx);
-		this.essenceId = master.rune().essenceId();
-	}
-	
+	}	
 	
 	@Override
 	public boolean activate() {
@@ -26,7 +22,7 @@ public class Banking extends MethodProvider implements Node {
 	public void execute() {
 		if(ctx.bank.open()) {
 			ctx.bank.depositInventory();
-			ctx.bank.withdraw(essenceId, Amount.ALL);
+			ctx.bank.withdraw(Runes.ESSENCE_ID, Amount.ALL);
 		}	
 	}	
 }

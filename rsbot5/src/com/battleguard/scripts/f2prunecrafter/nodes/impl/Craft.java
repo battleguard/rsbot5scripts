@@ -5,19 +5,20 @@ import org.powerbot.script.methods.MethodProvider;
 import org.powerbot.script.util.Timer;
 import org.powerbot.script.wrappers.GameObject;
 
-import com.battleguard.scripts.f2prunecrafter.data.Master;
+import com.battleguard.scripts.f2prunecrafter.data.Alters;
+
+import com.battleguard.scripts.f2prunecrafter.data.Runes;
 import com.battleguard.scripts.f2prunecrafter.nodes.Node;
 
 public class Craft extends MethodProvider implements Node {
 
 	private final int alterId;
-	private final int essenceId;
 	
-	public Craft(Master master, MethodContext ctx) {
+	public Craft(MethodContext ctx, Alters alter) {
 		super(ctx);
-		this.alterId = master.alter().alterId();
-		this.essenceId = master.rune().essenceId();
+		this.alterId = alter.alterId();
 	}	
+	
 	
 	@Override
 	public boolean activate() {
@@ -29,7 +30,7 @@ public class Craft extends MethodProvider implements Node {
 		final GameObject alter = ctx.objects.iterator().next();		
 		final Timer wait = new Timer(3000);
 		if(alter.isOnScreen() && alter.click(true)) {
-			while(wait.isRunning() && !ctx.backpack.select().id(essenceId).isEmpty()) {
+			while(wait.isRunning() && !ctx.backpack.select().id(Runes.ESSENCE_ID).isEmpty()) {
 				sleep(50);
 			}
 		} else if(ctx.movement.stepTowards(alter)) {

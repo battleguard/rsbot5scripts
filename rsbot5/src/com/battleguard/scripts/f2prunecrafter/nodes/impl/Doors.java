@@ -5,7 +5,7 @@ import org.powerbot.script.methods.MethodProvider;
 import org.powerbot.script.util.Timer;
 import org.powerbot.script.wrappers.GameObject;
 
-import com.battleguard.scripts.f2prunecrafter.data.Master;
+import com.battleguard.scripts.f2prunecrafter.data.Alters;
 import com.battleguard.scripts.f2prunecrafter.nodes.Node;
 
 public class Doors extends MethodProvider implements Node {
@@ -13,18 +13,18 @@ public class Doors extends MethodProvider implements Node {
 	private final int doorId;
 	private final int distance;
 	
-	private Doors(MethodContext ctx, final int doorId, final int distance) {
+	protected Doors(MethodContext ctx, final int doorId, final int distance) {
 		super(ctx);
 		this.doorId = doorId;
 		this.distance = distance;
 	}
 	
-	public static Doors createEnterAlterInstance(Master master, MethodContext ctx) {
-		return new Doors(ctx, master.alter().outsideDoorId(), 5);
+	public static Doors createEnterAlterInstance(MethodContext ctx, Alters alter) {
+		return new Doors(ctx, alter.outsideDoorId(), 5);
 	}
 	
-	public static Doors createExitAlterInstance(Master master, MethodContext ctx) {
-		return new Doors(ctx, master.alter().insideDoorId(), Integer.MAX_VALUE);
+	public static Doors createExitAlterInstance(MethodContext ctx, Alters alter) {
+		return new Doors(ctx, alter.insideDoorId(), Integer.MAX_VALUE);
 	}
 	
 	

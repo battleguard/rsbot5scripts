@@ -5,7 +5,6 @@ import org.powerbot.script.methods.MethodProvider;
 import org.powerbot.script.util.Timer;
 import org.powerbot.script.wrappers.Npc;
 
-import com.battleguard.scripts.f2prunecrafter.data.Master;
 import com.battleguard.scripts.f2prunecrafter.data.Musicians;
 import com.battleguard.scripts.f2prunecrafter.nodes.Node;
 
@@ -13,9 +12,9 @@ public class Rest extends MethodProvider implements Node {
 
 	private final Musicians musician;
 	
-	public Rest(Master master, MethodContext ctx) {
+	public Rest(MethodContext ctx, Musicians musician) {
 		super(ctx); 
-		musician = master.musician();
+		this.musician = musician;
 	} 
 
 	
