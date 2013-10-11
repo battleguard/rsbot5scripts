@@ -21,16 +21,18 @@ public class Fish extends DebugMethodProvider {
 	@Override
 	public void execute() {
 		final Timer wait = new Timer(2000);
-		fishingPool = ctx.npcs.iterator().next();
-		if(fishingPool.isOnScreen() && fishingPool.interact("Cage", "Fishing spot")) {
-			logMessage("interacting with fishspot");
-			while(wait.isRunning() && !isPlayerFishing()) {
-				sleep(50);
-			}
-		} else if(ctx.movement.stepTowards(fishingPool)) {
-			logMessage("walking to fishspot");
-			while(wait.isRunning() && ctx.players.local().isInMotion()) {
-				sleep(50);
+		if(ctx.npcs.iterator().hasNext()) {
+			fishingPool = ctx.npcs.iterator().next();
+			if(fishingPool.isOnScreen() && fishingPool.interact("Cage", "Fishing spot")) {
+				logMessage("interacting with fishspot");
+				while(wait.isRunning() && !isPlayerFishing()) {
+					sleep(50);
+				}
+			} else if(ctx.movement.stepTowards(fishingPool)) {
+				logMessage("walking to fishspot");
+				while(wait.isRunning() && ctx.players.local().isInMotion()) {
+					sleep(50);
+				}
 			}
 		}
 	}

@@ -6,6 +6,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.powerbot.script.Manifest;
 import org.powerbot.script.PollingScript;
+import org.powerbot.script.util.Timer;
 
 import com.battleguard.scripts.f2prunecrafter.data.Master;
 import com.battleguard.scripts.f2prunecrafter.graphics.Gui;
@@ -20,7 +21,8 @@ public class Runecrafter extends PollingScript {
 	
 	private final Queue<Node> bankNodes = new ConcurrentLinkedQueue<>();
     private final Queue<Node> craftNodes = new ConcurrentLinkedQueue<>();
-	private static final int RUNE_ESSENCE_ID = 1436;		
+	private static final int RUNE_ESSENCE_ID = 1436;
+	
 	
 	public Runecrafter() {		
 		getExecQueue(State.START).offer(new Runnable() {

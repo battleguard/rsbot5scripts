@@ -1,28 +1,14 @@
 package com.battleguard.scripts.pathmaker;
 
 import java.awt.Color;
-import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Iterator;
-import java.util.Vector;
-
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -33,21 +19,18 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.ListModel;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
 
 import org.powerbot.event.PaintListener;
+import org.powerbot.script.AbstractScript;
 import org.powerbot.script.Manifest;
 import org.powerbot.script.PollingScript;
-import org.powerbot.script.methods.MethodContext;
-import org.powerbot.script.methods.MethodProvider;
 import org.powerbot.script.wrappers.Tile;
 import org.powerbot.script.wrappers.TileMatrix;
 import org.powerbot.script.wrappers.TilePath;
 
-@Manifest(authors = { "battleguard" }, description = "path maker", name = "path maker")
+@Manifest(authors = { "battleguard" }, description = "path makeing utility for script writers", name = "TilePath creater")
 public class PathMaker extends PollingScript implements PaintListener {
 	
 	private final JButton addTileButton = new JButton("Add Tile");
@@ -65,12 +48,13 @@ public class PathMaker extends PollingScript implements PaintListener {
    
     private final JFrame frame = new JFrame();        
     private TilePath currentPath;	
-	private final JTextArea copyPathTextArea = new JTextArea();
+	private final JTextArea copyPathTextArea = new JTextArea();	
 	
 	public PathMaker() {				
 		for(int i = 1; i <= 20; i++) {
 			distanceComboBox.addItem(i);
 		}
+		distanceComboBox.setSelectedIndex(4);
 		
 		copyPathTextArea.setFont(new Font("Verdana", Font.PLAIN, 11));
 		copyPathTextArea.setEditable(false);
@@ -79,7 +63,7 @@ public class PathMaker extends PollingScript implements PaintListener {
 		
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				System.out.println("add stop code.");
+				getController().stop();
 			}
 		});
 		
@@ -103,13 +87,9 @@ public class PathMaker extends PollingScript implements PaintListener {
 		addTileButton.addActionListener(addTileListener);
 		printButton.addActionListener(printButtonListener);
 		removeTileButton.addActionListener(removeButtonListener);
-		resetButton.addActionListener(resetButtonListener);
-		
-		
-		frame.add(panel);
-				
-		frame.add(copyPathTextArea);
-		
+		resetButton.addActionListener(resetButtonListener);			
+		frame.add(panel);				
+		frame.add(copyPathTextArea);		
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
@@ -121,7 +101,7 @@ public class PathMaker extends PollingScript implements PaintListener {
 		public void actionPerformed(ActionEvent e) {
 			tileArray.addElement(ctx.players.local().getLocation());
 			currentPath = getTilePath();
-			frame.pack();
+			frame.pack();			
 		}
 	};	
 	

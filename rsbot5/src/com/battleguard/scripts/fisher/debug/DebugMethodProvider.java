@@ -3,6 +3,7 @@ package com.battleguard.scripts.fisher.debug;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.io.ObjectInputStream.GetField;
 import java.util.Queue;
 import java.util.Stack;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -53,10 +54,10 @@ public abstract class DebugMethodProvider extends MethodProvider implements Node
 	
 	public static void drawStack(Graphics g, Point loc) {
 		g.setColor(Color.BLACK);
-		g.fillRect(loc.x, loc.y, 300, 20 * MAX_QUEUE_SIZE);
-		g.setColor(Color.WHITE);
+		g.fillRect(loc.x, loc.y, 300, 20 * MAX_QUEUE_SIZE);		
+		g.setColor(Color.WHITE);		
 		for (String stack : logQueue) {
-			g.drawString(stack, 5, loc.y+=20);
+			g.drawString(stack, 5, loc.y+=18);
 		}		
 	}
 	

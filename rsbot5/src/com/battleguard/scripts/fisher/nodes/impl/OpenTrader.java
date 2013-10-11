@@ -17,15 +17,17 @@ public class OpenTrader extends DebugMethodProvider {
 	
 	@Override
 	public void execute() {			
-		trader = ctx.npcs.iterator().next();
-		if(trader.isOnScreen()) {
-			logMessage("interacting with trader");
-			trader.interact("Trade", trader.getName());
-		} else {
-			logMessage("Walking to trader");
-			ctx.movement.stepTowards(trader);
-		}
-		sleep(2000);
+		if(ctx.npcs.iterator().hasNext()) {
+			trader = ctx.npcs.iterator().next();
+			if(trader.isOnScreen()) {
+				logMessage("interacting with trader");
+				trader.interact("Trade", trader.getName());
+			} else {
+				logMessage("Walking to trader");
+				ctx.movement.stepTowards(trader);
+			}
+			sleep(2000);
+		}		
 	}
 
 	@Override

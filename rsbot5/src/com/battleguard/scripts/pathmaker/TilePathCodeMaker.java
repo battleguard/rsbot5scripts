@@ -14,26 +14,31 @@ public class TilePathCodeMaker {
 	private static class TilePathCode {
 		private static final int MAX_TILES_PER_LINE = 3;
 		private int tilesOnCurrentLine = 0;
-		private StringBuilder tilePathText = new StringBuilder("TilePath path = new TilePath(");
+		private StringBuilder tilePathText = new StringBuilder("Tile[] path = {");
 		private Enumeration<Tile> tiles;
 		
 		public TilePathCode(Enumeration<Tile> tiles) {			
 			this.tiles = tiles;
 		}
 		
-		public String generateCode() {
+		public String generateCode() {			
 			while(tiles.hasMoreElements()) {
 				addTileToTilePath();
 			}
+			tilePathText.append("};");
 			return tilePathText.toString();
 		}
 		
 		private void addTileToTilePath() {
-			tilePathText.append("new Tile" + tiles.nextElement());
-			tilesOnCurrentLine++;
 			if(isCodeLineTooLong()) {
 				addNewLine();
+			}					
+			tilePathText.append(" new Tile" + tiles.nextElement());
+			if(tiles.hasMoreElements()) {
+				tilePathText.append(",");
 			}
+			tilesOnCurrentLine++;
+
 		}
 		
 		private boolean isCodeLineTooLong() {
